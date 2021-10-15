@@ -22,7 +22,7 @@ import (
 	"sync"
 )
 
-type vector struct {
+type Vector struct {
 	sync.Mutex
 
 	elementCount      int
@@ -31,33 +31,33 @@ type vector struct {
 	elementData []interface{}
 }
 
-func NewVector() *vector {
-	inst := &vector{
+func NewVector() *Vector {
+	inst := &Vector{
 		elementData: make([]interface{}, 0),
 	}
 	return inst
 }
 
-func (v *vector) Size() int {
+func (v *Vector) Size() int {
 	return v.elementCount
 }
 
-func (v *vector) Capacity() int {
+func (v *Vector) Capacity() int {
 	return cap(v.elementData)
 }
 
-func (v *vector) IsEmpty() bool {
+func (v *Vector) IsEmpty() bool {
 	return v.elementCount == 0
 }
 
-func (v *vector) AddElement(obj interface{}) {
+func (v *Vector) AddElement(obj interface{}) {
 	v.Lock()
 	defer v.Unlock()
 	v.elementCount++
 	v.elementData = append(v.elementData, obj)
 }
 
-func (v *vector) RemoveElementAt(index int) {
+func (v *Vector) RemoveElementAt(index int) {
 	v.Lock()
 	defer v.Unlock()
 	if index >= v.elementCount {
@@ -82,28 +82,28 @@ func (v *vector) RemoveElementAt(index int) {
 	v.elementCount--
 }
 
-func (v *vector) ElementAt(index int) interface{} {
+func (v *Vector) ElementAt(index int) interface{} {
 	if index >= v.elementCount {
 		panic(fmt.Sprintf("array index out of bounds (%d >= %d)", index, v.elementCount))
 	}
 	return v.elementData[index]
 }
 
-func (v *vector) FirstElement() interface{} {
+func (v *Vector) FirstElement() interface{} {
 	if v.IsEmpty() {
 		panic("no such element")
 	}
 	return v.elementData[0]
 }
 
-func (v *vector) LastElement() interface{} {
+func (v *Vector) LastElement() interface{} {
 	if v.IsEmpty() {
 		panic("no such element")
 	}
 	return v.elementData[v.elementCount-1]
 }
 
-func (v *vector) SetElementAt(obj interface{}, index int) {
+func (v *Vector) SetElementAt(obj interface{}, index int) {
 	v.Lock()
 	defer v.Unlock()
 	if index >= v.elementCount {
@@ -112,7 +112,7 @@ func (v *vector) SetElementAt(obj interface{}, index int) {
 	v.elementData[index] = obj
 }
 
-func (v *vector) InsertElementAt(obj interface{}, index int) {
+func (v *Vector) InsertElementAt(obj interface{}, index int) {
 	v.Lock()
 	defer v.Unlock()
 	if index > v.elementCount {
@@ -132,7 +132,7 @@ func (v *vector) InsertElementAt(obj interface{}, index int) {
 	v.elementCount++
 }
 
-func (v *vector) RemoveElement(obj interface{}) bool {
+func (v *Vector) RemoveElement(obj interface{}) bool {
 	v.Lock()
 	i := v.IndexOf(obj, 0)
 	v.Unlock()
@@ -143,7 +143,7 @@ func (v *vector) RemoveElement(obj interface{}) bool {
 	return false
 }
 
-func (v *vector) RemoveAllElements() {
+func (v *Vector) RemoveAllElements() {
 	v.Lock()
 	defer v.Unlock()
 	for i := range v.elementData {
@@ -153,7 +153,7 @@ func (v *vector) RemoveAllElements() {
 	v.elementCount = 0
 }
 
-func (v *vector) Clone() *vector {
+func (v *Vector) Clone() *Vector {
 	inst := NewVector()
 	elementData := make([]interface{}, 0)
 	elementData = append(elementData, v.elementData...)
@@ -162,11 +162,11 @@ func (v *vector) Clone() *vector {
 	return inst
 }
 
-func (v *vector) Contains(obj interface{}) bool {
+func (v *Vector) Contains(obj interface{}) bool {
 	return v.IndexOf(obj, 0) >= 0
 }
 
-func (v *vector) IndexOf(obj interface{}, index int) int {
+func (v *Vector) IndexOf(obj interface{}, index int) int {
 	for i := index; i < v.elementCount; i++ {
 		if v.elementData[i] == obj {
 			return i
@@ -175,7 +175,7 @@ func (v *vector) IndexOf(obj interface{}, index int) int {
 	return -1
 }
 
-func (v *vector) LastIndexOf(obj interface{}, index int) int {
+func (v *Vector) LastIndexOf(obj interface{}, index int) int {
 	if index >= v.elementCount {
 		panic(fmt.Sprintf("array index out of bounds (%d >= %d)", index, v.elementCount))
 	}
@@ -187,27 +187,27 @@ func (v *vector) LastIndexOf(obj interface{}, index int) int {
 	return -1
 }
 
-func (v *vector) Get(index int) interface{} {
+func (v *Vector) Get(index int) interface{} {
 	return v.ElementAt(index)
 }
 
-func (v *vector) Set(index int, obj interface{}) interface{} {
+func (v *Vector) Set(index int, obj interface{}) interface{} {
 	oldValue := v.Get(index)
 	v.SetElementAt(obj, index)
 	return oldValue
 }
 
-func (v *vector) Add(obj interface{}) bool {
+func (v *Vector) Add(obj interface{}) bool {
 	v.AddElement(obj)
 	return true
 }
 
-func (v *vector) Remove(index int) interface{} {
+func (v *Vector) Remove(index int) interface{} {
 	oldValue := v.Get(index)
 	v.RemoveElementAt(index)
 	return oldValue
 }
 
-func (v *vector) Elements() enumerationI {
+func (v *Vector) Elements() enumerationI {
 	return NewEnumeration(v)
 }

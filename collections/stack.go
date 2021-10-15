@@ -17,33 +17,33 @@
 
 package collections
 
-type stack struct {
-	*vector
+type Stack struct {
+	*Vector
 }
 
-func NewStack() *stack {
-	inst := &stack{
-		vector: NewVector(),
+func NewStack() *Stack {
+	inst := &Stack{
+		Vector: NewVector(),
 	}
 	return inst
 }
 
-func (s *stack) Empty() bool {
+func (s *Stack) Empty() bool {
 	return s.Size() == 0
 }
 
-func (s *stack) Push(item interface{}) interface{} {
+func (s *Stack) Push(item interface{}) interface{} {
 	s.AddElement(item)
 	return item
 }
 
-func (s *stack) Pop() interface{} {
+func (s *Stack) Pop() interface{} {
 	obj := s.Peek()
 	s.RemoveElementAt(s.Size() - 1)
 	return obj
 }
 
-func (s *stack) Peek() interface{} {
+func (s *Stack) Peek() interface{} {
 	l := s.Size()
 	if l == 0 {
 		panic("empty stack")
@@ -51,7 +51,7 @@ func (s *stack) Peek() interface{} {
 	return s.ElementAt(l - 1)
 }
 
-func (s *stack) Search(obj interface{}) int {
+func (s *Stack) Search(obj interface{}) int {
 	i := s.LastIndexOf(obj, s.elementCount-1)
 
 	if i >= 0 {

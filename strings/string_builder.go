@@ -17,102 +17,102 @@
 
 package strings
 
-type stringBuilder struct {
+type StringBuilder struct {
 	*abstractStringBuilder
 }
 
-func NewStringBuilder() *stringBuilder {
+func NewStringBuilder() *StringBuilder {
 	return NewStringBuilderCap(16)
 }
 
-func NewStringBuilderCap(capacity int) *stringBuilder {
-	inst := &stringBuilder{
+func NewStringBuilderCap(capacity int) *StringBuilder {
+	inst := &StringBuilder{
 		abstractStringBuilder: NewAbstractStringBuilder(capacity),
 	}
 	return inst
 }
 
-func NewStringBuilderStr(str string) *stringBuilder {
+func NewStringBuilderStr(str string) *StringBuilder {
 	inst := NewStringBuilderCap(len([]rune(str)) + 16)
 	return inst.Append(str)
 }
 
-func (b *stringBuilder) Append(v interface{}) *stringBuilder {
+func (b *StringBuilder) Append(v interface{}) *StringBuilder {
 	b.abstractStringBuilder.append(v)
 	return b
 }
 
-func (b *stringBuilder) AppendNil() *stringBuilder {
+func (b *StringBuilder) AppendNil() *StringBuilder {
 	b.abstractStringBuilder.appendNil()
 	return b
 }
 
-func (b *stringBuilder) AppendRune(v rune) *stringBuilder {
+func (b *StringBuilder) AppendRune(v rune) *StringBuilder {
 	b.abstractStringBuilder.appendRune(v)
 	return b
 }
 
-func (b *stringBuilder) AppendRuneArray(v []rune) *stringBuilder {
+func (b *StringBuilder) AppendRuneArray(v []rune) *StringBuilder {
 	b.abstractStringBuilder.appendRuneArray(v)
 	return b
 }
 
-func (b *stringBuilder) AppendString(v string) *stringBuilder {
+func (b *StringBuilder) AppendString(v string) *StringBuilder {
 	b.abstractStringBuilder.appendString(v)
 	return b
 }
 
-func (b *stringBuilder) AppendObject(v interface{}) *stringBuilder {
+func (b *StringBuilder) AppendObject(v interface{}) *StringBuilder {
 	b.abstractStringBuilder.appendObject(v)
 	return b
 }
 
-func (b *stringBuilder) AppendCodePoint(codePoint int) *stringBuilder {
+func (b *StringBuilder) AppendCodePoint(codePoint int) *StringBuilder {
 	b.abstractStringBuilder.appendCodePoint(codePoint)
 	return b
 }
 
-func (b *stringBuilder) Delete(start int, end int) *stringBuilder {
+func (b *StringBuilder) Delete(start int, end int) *StringBuilder {
 	b.abstractStringBuilder.delete(start, end)
 	return b
 }
 
-func (b *stringBuilder) DeleteCharAt(index int) *stringBuilder {
+func (b *StringBuilder) DeleteCharAt(index int) *StringBuilder {
 	b.abstractStringBuilder.deleteCharAt(index)
 	return b
 }
 
-func (b *stringBuilder) Replace(start int, end int, str string) *stringBuilder {
+func (b *StringBuilder) Replace(start int, end int, str string) *StringBuilder {
 	b.abstractStringBuilder.replace(start, end, str)
 	return b
 }
 
-func (b *stringBuilder) Insert(index int, v interface{}) *stringBuilder {
+func (b *StringBuilder) Insert(index int, v interface{}) *StringBuilder {
 	b.abstractStringBuilder.insert(index, v)
 	return b
 }
 
-func (b *stringBuilder) IndexOf(str string) int {
+func (b *StringBuilder) IndexOf(str string) int {
 	return b.IndexOfFrom(str, 0)
 }
 
-func (b *stringBuilder) IndexOfFrom(str string, from int) int {
+func (b *StringBuilder) IndexOfFrom(str string, from int) int {
 	return b.abstractStringBuilder.indexOf(str, from)
 }
 
-func (b *stringBuilder) LastIndexOf(str string) int {
+func (b *StringBuilder) LastIndexOf(str string) int {
 	return b.LastIndexOfFrom(str, b.Length())
 }
 
-func (b *stringBuilder) LastIndexOfFrom(str string, from int) int {
+func (b *StringBuilder) LastIndexOfFrom(str string, from int) int {
 	return b.abstractStringBuilder.lastIndexOf(str, from)
 }
 
-func (b *stringBuilder) Reverse() *stringBuilder {
+func (b *StringBuilder) Reverse() *StringBuilder {
 	b.abstractStringBuilder.reverse()
 	return b
 }
 
-func (b *stringBuilder) String() string {
+func (b *StringBuilder) String() string {
 	return string(b.value[0:b.count])
 }
