@@ -22,6 +22,7 @@ Apache License, Version 2.0
 * Delete
 * DeleteCharAt
 * Replace
+* SetCharAt
 * Insert
 * IndexOf
 * IndexOfFrom

@@ -29,10 +29,10 @@ type enumeration struct {
 	sync.Mutex
 
 	count  int
-	vector *vector
+	vector *Vector
 }
 
-func NewEnumeration(vector *vector) *enumeration {
+func NewEnumeration(vector *Vector) *enumeration {
 	return &enumeration{
 		count:  0,
 		vector: vector,

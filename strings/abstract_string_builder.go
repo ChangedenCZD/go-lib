@@ -361,3 +361,15 @@ func (s *abstractStringBuilder) reverseAllValidSurrogatePairs() {
 		}
 	}
 }
+
+func (s *abstractStringBuilder) setCharAt(index int, ch rune) *abstractStringBuilder {
+	if (index < 0) || (index >= s.count) {
+		panic(error2.NewStringIndexOutOfBoundsError(index))
+	}
+	s.value[index] = ch
+	return s
+}
+
+func (s *abstractStringBuilder) String() string {
+	return string(s.value[0:s.count])
+}

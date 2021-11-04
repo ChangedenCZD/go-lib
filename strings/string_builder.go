@@ -87,6 +87,11 @@ func (b *StringBuilder) Replace(start int, end int, str string) *StringBuilder {
 	return b
 }
 
+func (b *StringBuilder) SetCharAt(index int, str rune) *StringBuilder {
+	b.abstractStringBuilder.setCharAt(index, str)
+	return b
+}
+
 func (b *StringBuilder) Insert(index int, v interface{}) *StringBuilder {
 	b.abstractStringBuilder.insert(index, v)
 	return b
