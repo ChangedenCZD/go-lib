@@ -26,3 +26,8 @@ go get -u github.com/changedenczd/go-lib/strings
 ```
 
 * StringBuilder
+
+### Arrays
+```shell
+go get -u github.com/changedenczd/go-lib/arrays
+```
