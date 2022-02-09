@@ -10,7 +10,7 @@ Apache License, Version 2.0
 
 ## Implements
 
-### Collections
+### [Collections](./collections)
 
 ```shell
 go get -u github.com/changedenczd/go-lib/collections
@@ -19,7 +19,7 @@ go get -u github.com/changedenczd/go-lib/collections
 * Vector
 * Stack
 
-### Strings
+### [Strings](./strings)
 
 ```shell
 go get -u github.com/changedenczd/go-lib/strings
@@ -27,7 +27,19 @@ go get -u github.com/changedenczd/go-lib/strings
 
 * StringBuilder
 
-### Arrays
+### [Arrays](./arrays)
+
 ```shell
 go get -u github.com/changedenczd/go-lib/arrays
 ```
+
+* Copy
+
+### [Tools](./tools)
+
+```shell
+go get -u github.com/changedenczd/go-lib/tools
+```
+
+* TernaryOperator
+* ReflectSupport

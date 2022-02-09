@@ -38,7 +38,7 @@ go get -u github.com/changedenczd/go-lib/strings
 ```
 
 ### Demo
-#### Vector
+#### StringBuilder
 
 ```go
 package main

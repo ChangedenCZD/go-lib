@@ -27,7 +27,7 @@ go get -u github.com/changedenczd/go-lib/arrays
 
 ### Demo
 
-#### Vector
+#### Copy
 
 ```go
 package main
